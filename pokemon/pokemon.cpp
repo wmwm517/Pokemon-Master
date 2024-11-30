@@ -135,6 +135,6 @@ int main()
 	bool isRunning = true;
 	while (isRunning)
 	{
-
+		break;
 	}
 }
