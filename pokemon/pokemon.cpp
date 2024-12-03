@@ -21,7 +21,7 @@ public:
 	string lastskill = "-"; //constructer에서 초기화를 -로 해주기
 	string lasteffect = "";
 	int HP;
-	int SkillCnt[4];
+	int skillCnt[4];
 protected:
 
 };
@@ -167,7 +167,7 @@ bool Pokemon::isLive()
 
 bool Pokemon::canTry(int Skillnum)
 {
-	if (this->SkillCnt[Skillnum] <= 0)
+	if (this->skillCnt[Skillnum] <= 0)
 	{
 		return false;
 	}
