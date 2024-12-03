@@ -29,6 +29,8 @@ protected:
 class Specification0 : public Pokemon
 {
 public:
+//값의 초기화는 constructor에서 해줘야한다
+	Specification0();
 	string name = "Pikachu";
 	string type = "Electric";
 	int HP = 35;
