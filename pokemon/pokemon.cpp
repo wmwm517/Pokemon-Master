@@ -8,37 +8,23 @@ using namespace std;
 class Pokemon
 {
 public:
-	virtual void Skill(Pokemon& other, int n) {};
+	void Skill(Pokemon& other, int n);
 	bool isLive();
 	bool canTry(int Skillnum);
 	int effect(string skillType, string pokemonType);
 	void latestSkill(string latestSkill, string lasteffect);
-	virtual string getSkillName(int n) { return ""; }
-	virtual string getSkillType(int n) { return ""; }
-	virtual int getSkillDamage(int n) { return 0; }
-	virtual int getSkillCnt(int n) { return 0; }
-	virtual int getSkillMaxCnt(int n) { return 0; }
-	string name;
-	string type;
-	string lastskill = "-";
-	string lasteffect = "";
-	int HP;
-	int skillCnt[4];
-protected:
-
-};
-
-
-
-class Specification0 : public Pokemon
-{
-public:
-	Specification0();
+	string getName() { return name; }
+	string getType() { return type; }
+	int getHP() { return HP; }
+	string getLastskill() { return lastskill; }
+	string getLasteffect() { return lasteffect; }
 	string getSkillName(int n) { return skillName[n]; }
 	string getSkillType(int n) { return skillType[n]; }
 	int getSkillDamage(int n) { return skillDamage[n]; }
 	int getSkillCnt(int n) { return skillCnt[n]; }
 	int getSkillMaxCnt(int n) { return skillMaxCnt[n]; }
+	
+protected:
 	string name;
 	string type;
 	int HP;
@@ -47,7 +33,60 @@ public:
 	int skillDamage[4];
 	int skillCnt[4];
 	int skillMaxCnt[4]; 
-	void Skill(Pokemon& other, int n);
+	string lastskill = "-";
+	string lasteffect = "";
+};
+
+void Pokemon::Skill(Pokemon& other, int n)
+{
+	this->skillName[n];
+	this->skillType[n];
+	this->skillDamage[n];
+	this->skillCnt[n];
+
+	if (canTry(skillCnt[n]))
+	{
+		int effectResult = effect(skillType[n], other.type);
+		cout << this->name << " used " << skillName[n] << "." << endl;
+		if (effectResult == 0)
+		{
+			cout << "It was not very effective." << endl << endl;
+			latestSkill(skillName[n], "It was not very effective.");
+			other.HP -= skillDamage[n] - 3;
+		}
+		if (effectResult == 1)
+		{
+			cout << "It was effective." << endl << endl;
+			latestSkill(skillName[n], "It was effective.");
+			other.HP -= skillDamage[n];
+		}
+		if (effectResult == 2)
+		{
+			cout << "It was super effective." << endl << endl;
+			latestSkill(skillName[n], "It was super effective.");
+			other.HP -= skillDamage[n] + 5;
+		}
+
+		this->skillCnt[n] -= 1;
+
+		if (!other.isLive())
+		{
+			cout << "===============================================================" << endl;
+			cout << "Match Result: " << this->name << " defeats " << other.name;
+			return;
+		}
+	}
+	else
+	{
+		cout << this->name << " failed to perform " << skillName << "." << endl;
+	}
+}
+
+
+class Specification0 : public Pokemon
+{
+public:
+	Specification0();
 };
 
 Specification0::Specification0(){
@@ -61,50 +100,6 @@ Specification0::Specification0(){
 	skillMaxCnt[0] = 5, skillMaxCnt[1] = 5, skillMaxCnt[2] = 5, skillMaxCnt[3] = 3;
 }
 
-void Specification0::Skill(Pokemon& other, int n)
-{
-	this->skillName[n];
-	this->skillType[n];
-	this->skillDamage[n];
-	this->skillCnt[n];
-
-	if (canTry(skillCnt[n]))
-	{
-		int effectResult = effect(skillType[n], other.type);
-		cout << this->name << " used " << skillName << "." << endl;
-		if (effectResult == 0)
-		{
-			cout << "It was not very effective." << endl;
-			latestSkill(skillName[n], "It was not very effective.");
-			other.HP -= skillDamage[n] - 3;
-		}
-		if (effectResult == 1)
-		{
-			cout << "It was effective." << endl;
-			latestSkill(skillName[n], "It was effective.");
-			other.HP -= skillDamage[n];
-		}
-		if (effectResult == 2)
-		{
-			cout << "It was super effective." << endl;
-			latestSkill(skillName[n], "It was super effective.");
-			other.HP -= skillDamage[n] + 5;
-		}
-
-		this->skillCnt[n] -= 1;
-
-		if (!other.isLive())
-		{
-			cout << "===============================================================" << endl;
-			cout << "Match Result: " << this->name << " defeats " << other.name;
-			return;
-		}
-	}
-	else
-	{
-		cout << this->name << " failed to perform " << skillName << "." << endl;
-	}
-}
 
 
 
@@ -112,20 +107,6 @@ class Specification1 : public Pokemon
 {
 public:
 	Specification1();
-	string getSkillName(int n) { return skillName[n]; }
-	string getSkillType(int n) { return skillType[n]; }
-	int getSkillDamage(int n) { return skillDamage[n]; }
-	int getSkillCnt(int n) { return skillCnt[n]; }
-	int getSkillMaxCnt(int n) { return skillMaxCnt[n]; }
-	string name;
-	string type;
-	int HP;
-	string skillName[4];
-	string skillType[4];
-	int skillDamage[4];
-	int skillCnt[4];
-	int skillMaxCnt[4]; 
-	void Skill(Pokemon& other, int n);
 };
 
 Specification1::Specification1() {
@@ -139,50 +120,6 @@ Specification1::Specification1() {
 	skillMaxCnt[0] = 10, skillMaxCnt[1] = 5, skillMaxCnt[2] = 2, skillMaxCnt[3] = 1;
 }
 
-void Specification1::Skill(Pokemon& other, int n)
-{
-	this->skillName[n];
-	this->skillType[n];
-	this->skillDamage[n];
-	this->skillCnt[n];
-
-	if (canTry(skillCnt[n]))
-	{
-		int effectResult = effect(skillType[n], other.type);
-		cout << this->name << " used " << skillName << "." << endl;
-		if (effectResult == 0)
-		{
-			cout << "It was not very effective." << endl;
-			latestSkill(skillName[n], "It was not very effective.");
-			other.HP -= skillDamage[n] - 3;
-		}
-		if (effectResult == 1)
-		{
-			cout << "It was effective." << endl;
-			latestSkill(skillName[n], "It was effective.");
-			other.HP -= skillDamage[n];
-		}
-		if (effectResult == 2)
-		{
-			cout << "It was super effective." << endl;
-			latestSkill(skillName[n], "It was super effective.");
-			other.HP -= skillDamage[n] + 5;
-		}
-
-		this->skillCnt[n] -= 1;
-
-		if (!other.isLive())
-		{
-			cout << "===============================================================" << endl;
-			cout << "Match Result: " << this->name << " defeats " << other.name;
-			return;
-		}
-	}
-	else
-	{
-		cout << this->name << " failed to perform " << skillName << "." << endl;
-	}
-}
 
 
 
@@ -190,20 +127,6 @@ class Specification2 : public Pokemon
 {
 public:
 	Specification2();
-	string getSkillName(int n) { return skillName[n]; }
-	string getSkillType(int n) { return skillType[n]; }
-	int getSkillDamage(int n) { return skillDamage[n]; }
-	int getSkillCnt(int n) { return skillCnt[n]; }
-	int getSkillMaxCnt(int n) { return skillMaxCnt[n]; }
-	string name;
-	string type;
-	int HP;
-	string skillName[4];
-	string skillType[4];
-	int skillDamage[4];
-	int skillCnt[4];
-	int skillMaxCnt[4]; 
-	void Skill(Pokemon& other, int n);
 };
 
 Specification2::Specification2() {
@@ -217,71 +140,12 @@ Specification2::Specification2() {
 	skillMaxCnt[0] = 5, skillMaxCnt[1] = 3, skillMaxCnt[2] = 3, skillMaxCnt[3] = 1;	
 }
 
-void Specification2::Skill(Pokemon& other, int n)
-{
-	this->skillName[n];
-	this->skillType[n];
-	this->skillDamage[n];
-	this->skillCnt[n];
-
-	if (canTry(skillCnt[n]))
-	{
-		int effectResult = effect(skillType[n], other.type);
-		cout << this->name << " used " << skillName << "." << endl;
-		if (effectResult == 0)
-		{
-			cout << "It was not very effective." << endl;
-			latestSkill(skillName[n], "It was not very effective.");
-			other.HP -= skillDamage[n] - 3;
-		}
-		if (effectResult == 1)
-		{
-			cout << "It was effective." << endl;
-			latestSkill(skillName[n], "It was effective.");
-			other.HP -= skillDamage[n];
-		}
-		if (effectResult == 2)
-		{
-			cout << "It was super effective." << endl;
-			latestSkill(skillName[n], "It was super effective.");
-			other.HP -= skillDamage[n] + 5;
-		}
-
-		this->skillCnt[n] -= 1;
-
-		if (!other.isLive())
-		{
-			cout << "===============================================================" << endl;
-			cout << "Match Result: " << this->name << " defeats " << other.name;
-			return;
-		}
-	}
-	else
-	{
-		cout << this->name << " failed to perform " << skillName << "." << endl;
-	}
-}
-
 
 
 class Specification3 : public Pokemon
 {
 public:
 	Specification3();
-	string getSkillName(int n) { return skillName[n]; }
-	string getSkillType(int n) { return skillType[n]; }
-	int getSkillDamage(int n) { return skillDamage[n]; }
-	int getSkillCnt(int n) { return skillCnt[n]; }
-	int getSkillMaxCnt(int n) { return skillMaxCnt[n]; }
-	string name;
-	string type;
-	int HP;
-	string skillName[4];
-	string skillType[4];
-	int skillDamage[4];
-	int skillCnt[4];
-	int skillMaxCnt[4]; 
-	void Skill(Pokemon& other, int n);
 };
 
 Specification3::Specification3() {
@@ -295,50 +159,6 @@ Specification3::Specification3() {
 	skillMaxCnt[0] = 5, skillMaxCnt[1] = 5, skillMaxCnt[2] = 5, skillMaxCnt[3] = 5;	
 }
 
-void Specification3::Skill(Pokemon& other, int n)
-{
-	this->skillName[n];
-	this->skillType[n];
-	this->skillDamage[n];
-	this->skillCnt[n];
-
-	if (canTry(skillCnt[n]))
-	{
-		int effectResult = effect(skillType[n], other.type);
-		cout << this->name << " used " << skillName << "." << endl;
-		if (effectResult == 0)
-		{
-			cout << "It was not very effective." << endl;
-			latestSkill(skillName[n], "It was not very effective.");
-			other.HP -= skillDamage[n] - 3;
-		}
-		if (effectResult == 1)
-		{
-			cout << "It was effective." << endl;
-			latestSkill(skillName[n], "It was effective.");
-			other.HP -= skillDamage[n];
-		}
-		if (effectResult == 2)
-		{
-			cout << "It was super effective." << endl;
-			latestSkill(skillName[n], "It was super effective.");
-			other.HP -= skillDamage[n] + 5;
-		}
-
-		this->skillCnt[n] -= 1;
-
-		if (!other.isLive())
-		{
-			cout << "===============================================================" << endl;
-			cout << "Match Result: " << this->name << " defeats " << other.name;
-			return;
-		}
-	}
-	else
-	{
-		cout << this->name << " failed to perform " << skillName << "." << endl;
-	}
-}
 
 
 
@@ -346,20 +166,6 @@ class Specification4 : public Pokemon
 {
 public:
 	Specification4();
-	string getSkillName(int n) { return skillName[n]; }
-	string getSkillType(int n) { return skillType[n]; }
-	int getSkillDamage(int n) { return skillDamage[n]; }
-	int getSkillCnt(int n) { return skillCnt[n]; }
-	int getSkillMaxCnt(int n) { return skillMaxCnt[n]; }
-	string name;
-	string type;
-	int HP;
-	string skillName[4];
-	string skillType[4];
-	int skillDamage[4];
-	int skillCnt[4];
-	int skillMaxCnt[4]; 
-	void Skill(Pokemon& other, int n);
 };
 
 Specification4::Specification4() {
@@ -373,50 +179,6 @@ Specification4::Specification4() {
 	skillMaxCnt[0] = 10, skillMaxCnt[1] = 10, skillMaxCnt[2] = 10, skillMaxCnt[3] = 10;	
 }
 
-void Specification4::Skill(Pokemon& other, int n)
-{
-	this->skillName[n];
-	this->skillType[n];
-	this->skillDamage[n];
-	this->skillCnt[n];
-
-	if (canTry(skillCnt[n]))
-	{
-		int effectResult = effect(skillType[n], other.type);
-		cout << this->name << " used " << skillName << "." << endl;
-		if (effectResult == 0)
-		{
-			cout << "It was not very effective." << endl;
-			latestSkill(skillName[n], "It was not very effective.");
-			other.HP -= skillDamage[n] - 3;
-		}
-		if (effectResult == 1)
-		{
-			cout << "It was effective." << endl;
-			latestSkill(skillName[n], "It was effective.");
-			other.HP -= skillDamage[n];
-		}
-		if (effectResult == 2)
-		{
-			cout << "It was super effective." << endl;
-			latestSkill(skillName[n], "It was super effective.");
-			other.HP -= skillDamage[n] + 5;
-		}
-
-		this->skillCnt[n] -= 1;
-
-		if (!other.isLive())
-		{
-			cout << "===============================================================" << endl;
-			cout << "Match Result: " << this->name << " defeats " << other.name;
-			return;
-		}
-	}
-	else
-	{
-		cout << this->name << " failed to perform " << skillName << "." << endl;
-	}
-}
 
 
 
@@ -593,19 +355,19 @@ int main()
 			p2 = new Specification4();
 		}
 
-		for (int i=0; i<2; i++)
+		for (int i=0; i<999; i++)
 		{
 			int skillnum;
-			if(i==0){
+			if (i%2 == 0) {
 				cout << "+-------------------------------------------------------------+" << endl;
 				cout << "| 2024-02 Object-Oriented Programming Pokemon Master          |" << endl;
 				cout << "+------------------------------+------------------------------+" << endl;
-				cout << "| " <<p1->name<<" (*)                  | "<<p2->name<<"                      |" << endl;
-				cout << "| Type: "<<p1->type<<"               | Type: "<<p2->type<<"                  |" << endl;
-				cout << "| HP: "<<p1->HP<<"                       | HP: "<<p2->HP<<"                       |" << endl;
+				cout << "| " << p1->getName() <<" (*)                  | "<< p2->getName() <<"                      |" << endl;
+				cout << "| Type: "<< p1->getType() <<"               | Type: "<< p2->getType() <<"                  |" << endl;
+				cout << "| HP: " << p1->getHP() << "                       | HP: " << p2->getHP() << "                       |" << endl;
 				cout << "+------------------------------+------------------------------+" << endl;
-				cout << "| Latest Skill: " << p1->lastskill << "              | Latest Skill: " << p2->lastskill << "              |" << endl;
-				cout << "| " << p1->lasteffect << "                             | " << p2->lasteffect << "                             |" << endl;
+				cout << "| Latest Skill: " << p1->getLastskill() << "              | Latest Skill: " << p2->getLastskill() << "              |" << endl;
+				cout << "| " << p1->getLasteffect() << "                             | " << p2->getLasteffect() << "                             |" << endl;
 				cout << "+------------------------------+------------------------------+" << endl;
 				cout << "| (0) " << p1->getSkillName(0) << "                   | (0) " << p2->getSkillName(0) << "                     |" << endl;
 				cout << "|     - Type: " << p1->getSkillType(0) << "           |     - Type: " << p2->getSkillType(0) << "           |" << endl;
@@ -628,41 +390,38 @@ int main()
 				cin >> skillnum;
 				p1->Skill(*p2, skillnum);
 			}
-			else if(i==1){
+			else if (i%2 == 1) {
 				cout << "+-------------------------------------------------------------+" << endl;
 				cout << "| 2024-02 Object-Oriented Programming Pokemon Master          |" << endl;
 				cout << "+------------------------------+------------------------------+" << endl;
-				cout << "| " <<p1->name<<"                      | "<<p2->name<<" (*)                  |" << endl;
-				cout << "| Type: "<<p1->type<<"               | Type: "<<p2->type<<"                  |" << endl;
-				cout << "| HP: "<<p1->HP<<"                       | HP: "<<p2->HP<<"                       |" << endl;
+				cout << "| " << p1->getName() <<"                      | "<< p2->getName() << " (*)                  |" << endl;
+				cout << "| Type: "<< p1->getType() <<"               | Type: "<< p2->getType() <<"                  |" << endl;
+				cout << "| HP: " << p1->getHP() << "                       | HP: " << p2->getHP() << "                       |" << endl;
 				cout << "+------------------------------+------------------------------+" << endl;
-				cout << "| Latest Skill: "<<p1->lastskill<<"              | Latest Skill: "<<p2->lastskill<<"              |" << endl;
-				cout << "| "<<p1->lasteffect<<"                             | "<<p2->lasteffect<<"                             |" << endl;
+				cout << "| Latest Skill: " << p1->getLastskill() << "              | Latest Skill: " << p2->getLastskill() << "              |" << endl;
+				cout << "| " << p1->getLasteffect() << "                             | " << p2->getLasteffect() << "                             |" << endl;
 				cout << "+------------------------------+------------------------------+" << endl;
-				cout << "| (0) Tackle                   | (0) Wrap                     |" << endl;
-				cout << "|     - Type: Normal           |     - Type: Normal           |" << endl;
-				cout << "|     - Damage: 4              |     - Damage: 4              |" << endl;
-				cout << "|     - Count: 5(5)            |     - Count: 10(10)          |" << endl;
-				cout << "| (1) Grass Knot               | (1) Aqua Tail                |" << endl;
-				cout << "|     - Type: Grass            |     - Type: Water            |" << endl;
-				cout << "|     - Damage: 8              |     - Damage: 3              |" << endl;
-				cout << "|     - Count: 5(5)            |     - Count: 5(5)            |" << endl;
-				cout << "| (2) Thunderbolt              | (2) Water Pulse              |" << endl;
-				cout << "|     - Type: Electric         |     - Type: Water            |" << endl;
-				cout << "|     - Damage: 10             |     - Damage: 13             |" << endl;
-				cout << "|     - Count: 5(5)            |     - Count: 2(2)            |" << endl;
-				cout << "| (3) Megabolt                 | (3) Hyper Beam               |" << endl;
-				cout << "|     - Type: Electric         |     - Type: Normal           |" << endl;
-				cout << "|     - Damage: 15             |     - Damage: 20             |" << endl;
-				cout << "|     - Count: 3(3)            |     - Count: 1(1)            |" << endl;
+				cout << "| (0) " << p1->getSkillName(0) << "                   | (0) " << p2->getSkillName(0) << "                     |" << endl;
+				cout << "|     - Type: " << p1->getSkillType(0) << "           |     - Type: " << p2->getSkillType(0) << "           |" << endl;
+				cout << "|     - Damage: " << p1->getSkillDamage(0) << "              |     - Damage: " << p2->getSkillDamage(0) << "              |" << endl;
+				cout << "|     - Count: " << p1->getSkillCnt(0) << "(" << p1->getSkillMaxCnt(0) << ")           |     - Count: " << p2->getSkillCnt(0) << "(" << p2->getSkillMaxCnt(0) << ")" << "          |" << endl;
+				cout << "| (1) " << p1->getSkillName(1) << "               | (1) " << p2->getSkillName(1) << "                |" << endl;
+				cout << "|     - Type: " << p1->getSkillType(1) << "            |     - Type: " << p2->getSkillType(1) << "            |" << endl;
+				cout << "|     - Damage: " << p1->getSkillDamage(1) << "              |     - Damage: " << p2->getSkillDamage(1) << "              |" << endl;
+				cout << "|     - Count: " << p1->getSkillCnt(1) << "(" << p1->getSkillMaxCnt(1) << ")           |     - Count: " << p2->getSkillCnt(1) << "(" << p2->getSkillMaxCnt(1) << ")" << "          |" << endl;
+				cout << "| (2) " << p1->getSkillName(2) << "               | (2) " << p2->getSkillName(2) << "                |" << endl;
+				cout << "|     - Type: " << p1->getSkillType(2) << "            |     - Type: " << p2->getSkillType(2) << "            |" << endl;
+				cout << "|     - Damage: " << p1->getSkillDamage(2) << "              |     - Damage: " << p2->getSkillDamage(2) << "              |" << endl;
+				cout << "|     - Count: " << p1->getSkillCnt(2) << "(" << p1->getSkillMaxCnt(2) << ")           |     - Count: " << p2->getSkillCnt(2) << "(" << p2->getSkillMaxCnt(2) << ")" << "          |" << endl;
+				cout << "| (3) " << p1->getSkillName(3) << "               | (3) " << p2->getSkillName(3) << "                |" << endl;
+				cout << "|     - Type: " << p1->getSkillType(3) << "            |     - Type: " << p2->getSkillType(3) << "            |" << endl;
+				cout << "|     - Damage: " << p1->getSkillDamage(3) << "              |     - Damage: " << p2->getSkillDamage(3) << "              |" << endl;
+				cout << "|     - Count: " << p1->getSkillCnt(3) << "(" << p1->getSkillMaxCnt(3) << ")           |     - Count: " << p2->getSkillCnt(3) << "(" << p2->getSkillMaxCnt(3) << ")" << "          |" << endl;
 				cout << "+------------------------------+------------------------------+" << endl;
 				cout << "Choose a skill (0~3): ";
 				cin >> skillnum;
 				p2->Skill(*p1, skillnum);
 			}
-
 		}
-
-		break;
 	}
 }
