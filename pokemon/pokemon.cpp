@@ -72,13 +72,13 @@ void Pokemon::Skill(Pokemon& other, int n)
 		if (!other.isLive())
 		{
 			cout << "===============================================================" << endl;
-			cout << "Match Result: " << this->name << " defeats " << other.name;
+			cout << "Match Result: " << this->name << " defeats " << other.name << endl;
 			exit(0);
 		}
 	}
 	else
 	{
-		cout << this->name << " failed to perform " << skillName << "." << endl;
+		cout << this->name << " failed to perform " << skillName[n] << "." << endl;
 	}
 }
 
