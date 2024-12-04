@@ -13,11 +13,11 @@ public:
 	bool canTry(int Skillnum);
 	int effect(string skillType, string pokemonType);
 	void latestSkill(string latestSkill, string lasteffect);
-	virtual string getSkillName(int n) {};
-	virtual string getSkillType(int n) {};
-	virtual int getSkillDamage(int n) {};
-	virtual int getSkillCnt(int n) {};
-	virtual int getSkillMaxCnt(int n) {};
+	virtual string getSkillName(int n) { return ""; }
+	virtual string getSkillType(int n) { return ""; }
+	virtual int getSkillDamage(int n) { return 0; }
+	virtual int getSkillCnt(int n) { return 0; }
+	virtual int getSkillMaxCnt(int n) { return 0; }
 	string name;
 	string type;
 	string lastskill = "-";
@@ -440,7 +440,7 @@ bool Pokemon::canTry(int Skillnum)
 
 int Pokemon::effect(string skillType, string pokemonType)
 {
-	// 0:효과별로, 1:효과짱, 2:효과대박짱
+	// 0:"It was not very effective", 1:"It was effective", 2:"It was super effective"
 
 	if (skillType == "Normal")
 	{
@@ -522,6 +522,7 @@ int Pokemon::effect(string skillType, string pokemonType)
 			return 2;
 		}
 	}
+	return 0;
 }
 
 void Pokemon::latestSkill(string latestSkillName, string latestEffect)
