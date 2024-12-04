@@ -73,7 +73,7 @@ void Pokemon::Skill(Pokemon& other, int n)
 		{
 			cout << "===============================================================" << endl;
 			cout << "Match Result: " << this->name << " defeats " << other.name;
-			return;
+			exit(0);
 		}
 	}
 	else
@@ -296,66 +296,65 @@ void Pokemon::latestSkill(string latestSkillName, string latestEffect)
 int main()
 {
 	bool isRunning = true;
+	int num1, num2;
+	cout << "Choose a Pokemon(0~4): ";
+	cin >> num1;
+	cout << "Choose a Pokemon(0~4): ";
+	cin >> num2;
+
+	if (num2 == num1)
+	{
+		cout << "You have to choose Pokemons different from each other.";
+		return 0;
+	}	
+	Pokemon *p1;
+	Pokemon *p2;
+
+	if (num1 == 0)
+	{
+		p1 = new Specification0();
+	}
+	else if (num1 == 1)
+	{
+		p1 = new Specification1();
+	}
+	else if (num1 == 2)
+	{
+		p1 = new Specification2();
+	}
+	else if (num1 == 3)
+	{
+	p1 = new Specification3();
+	}
+	else if (num1 == 4)
+	{
+		p1 = new Specification4();
+	}
+
+	if (num2 == 0)
+	{
+		p2 = new Specification0();
+	}
+	else if (num2 == 1)
+	{
+		p2 = new Specification1();
+	}
+	else if (num2 == 2)
+	{
+		p2 = new Specification2();
+	}
+	else if (num2 == 3)
+	{
+		p2 = new Specification3();
+	}
+	else if (num2 == 4)
+	{
+	p2 = new Specification4();
+	}
+
 	while (isRunning)
 	{
-		int num1, num2;
-		cout << "Choose a Pokemon(0~4): ";
-		cin >> num1;
-		cout << "Choose a Pokemon(0~4): ";
-		cin >> num2;
-
-		if (num2 == num1)
-		{
-			cout << "You have to choose Pokemons different from each other.";
-			return 0;
-		}	
-
-		Pokemon *p1;
-		Pokemon *p2;
-
-		if (num1 == 0)
-		{
-			p1 = new Specification0();
-		}
-		else if (num1 == 1)
-		{
-			p1 = new Specification1();
-		}
-		else if (num1 == 2)
-		{
-			p1 = new Specification2();
-		}
-		else if (num1 == 3)
-		{
-			p1 = new Specification3();
-		}
-		else if (num1 == 4)
-		{
-			p1 = new Specification4();
-		}
-
-		if (num2 == 0)
-		{
-			p2 = new Specification0();
-		}
-		else if (num2 == 1)
-		{
-			p2 = new Specification1();
-		}
-		else if (num2 == 2)
-		{
-			p2 = new Specification2();
-		}
-		else if (num2 == 3)
-		{
-			p2 = new Specification3();
-		}
-		else if (num2 == 4)
-		{
-			p2 = new Specification4();
-		}
-
-		for (int i=0; i<999; i++)
+		for (int i=0; i<2; i++)
 		{
 			int skillnum;
 			if (i%2 == 0) {
