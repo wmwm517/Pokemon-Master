@@ -51,14 +51,14 @@ public:
 };
 
 Specification0::Specification0(){
-	name = "Dratini";
-	type = "Water";
-	HP = 41;
-	skillName[0] = "Wrap", skillName[1] = "Aqua Tail", skillName[2] = "Water Pulse", skillName[3] = "Hyper Beam";
-	skillType[0] = "Normal", skillType[1] = "Water", skillType[2] = "Water", skillType[3] = "Normal";
-	skillDamage[0] = 4, skillDamage[1] = 3, skillDamage[2] = 13, skillDamage[3] = 20;
-	skillCnt[0] = 10, skillCnt[1] = 5, skillCnt[2] = 2, skillCnt[3] = 1;
-	skillMaxCnt[0] = 10, skillMaxCnt[1] = 5, skillMaxCnt[2] = 2, skillMaxCnt[3] = 1;
+	name = "Pikachu";
+	type = "Electric";
+	HP = 35;
+	skillName[0] = "Tackle", skillName[1] = "Grass Knot", skillName[2] = "Thunderbolt", skillName[3] = "Megabolt";
+	skillType[0] = "Normal", skillType[1] = "Grass", skillType[2] = "Electric", skillType[3] = "Electric";
+	skillDamage[0] = 4, skillDamage[1] = 8, skillDamage[2] = 10, skillDamage[3] = 15;
+	skillCnt[0] = 5, skillCnt[1] = 5, skillCnt[2] = 5, skillCnt[3] = 3;
+	skillMaxCnt[0] = 5, skillMaxCnt[1] = 5, skillMaxCnt[2] = 5, skillMaxCnt[3] = 3;
 }
 
 void Specification0::Skill(Pokemon& other, int n)
@@ -129,14 +129,14 @@ public:
 };
 
 Specification1::Specification1() {
-	name = "Pikachu";
-	type = "Electric";
-	HP = 35;
-	skillName[0] = "Tackle", skillName[1] = "Grass Knot", skillName[2] = "Thunderbolt", skillName[3] = "Megabolt";
-	skillType[0] = "Normal", skillType[1] = "Grass", skillType[2] = "Electric", skillType[3] = "Electric";
-	skillDamage[0] = 4, skillDamage[1] = 8, skillDamage[2] = 10, skillDamage[3] = 15;
-	skillCnt[0] = 5, skillCnt[1] = 5, skillCnt[2] = 5, skillCnt[3] = 3;
-	skillMaxCnt[0] = 5, skillMaxCnt[1] = 5, skillMaxCnt[2] = 5, skillMaxCnt[3] = 3;
+	name = "Dratini";
+	type = "Water";
+	HP = 41;
+	skillName[0] = "Wrap", skillName[1] = "Aqua Tail", skillName[2] = "Water Pulse", skillName[3] = "Hyper Beam";
+	skillType[0] = "Normal", skillType[1] = "Water", skillType[2] = "Water", skillType[3] = "Normal";
+	skillDamage[0] = 4, skillDamage[1] = 3, skillDamage[2] = 13, skillDamage[3] = 20;
+	skillCnt[0] = 10, skillCnt[1] = 5, skillCnt[2] = 2, skillCnt[3] = 1;
+	skillMaxCnt[0] = 10, skillMaxCnt[1] = 5, skillMaxCnt[2] = 2, skillMaxCnt[3] = 1;
 }
 
 void Specification1::Skill(Pokemon& other, int n)
@@ -542,7 +542,7 @@ int main()
 		cout << "Choose a Pokemon(0~4): ";
 		cin >> num2;
 
-		if (num2 == num1);
+		if (num2 == num1)
 		{
 			cout << "You have to choose Pokemons different from each other.";
 			return 0;
@@ -604,7 +604,7 @@ int main()
 				cout << "| Type: "<<p1->type<<"               | Type: "<<p2->type<<"                  |" << endl;
 				cout << "| HP: "<<p1->HP<<"                       | HP: "<<p2->HP<<"                       |" << endl;
 				cout << "+------------------------------+------------------------------+" << endl;
-				cout << "| Latest Skill: " << p1->lastskill << "-              | Latest Skill: " << p2->lastskill << "              |" << endl;
+				cout << "| Latest Skill: " << p1->lastskill << "              | Latest Skill: " << p2->lastskill << "              |" << endl;
 				cout << "| " << p1->lasteffect << "                             | " << p2->lasteffect << "                             |" << endl;
 				cout << "+------------------------------+------------------------------+" << endl;
 				cout << "| (0) " << p1->getSkillName(0) << "                   | (0) " << p2->getSkillName(0) << "                     |" << endl;
@@ -656,7 +656,9 @@ int main()
 				cout << "|     - Damage: 15             |     - Damage: 20             |" << endl;
 				cout << "|     - Count: 3(3)            |     - Count: 1(1)            |" << endl;
 				cout << "+------------------------------+------------------------------+" << endl;
-				cout << "Choose a skill (0~3): ";	
+				cout << "Choose a skill (0~3): ";
+				cin >> skillnum;
+				p2->Skill(*p1, skillnum);
 			}
 
 		}
