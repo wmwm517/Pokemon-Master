@@ -358,12 +358,12 @@ int main()
 		for (int i=0; i<2; i++)
 		{
 			int skillnum;
-			if (i%2 == 0) {
+			if (i == 0) {
 				cout << "+-------------------------------------------------------------+" << endl;
 				cout << "| 2024-02 Object-Oriented Programming Pokemon Master          |" << endl;
 				cout << "+------------------------------+------------------------------+" << endl;
-				cout << "| " << p1->getName() << " (*)" << setw(25 - p1->getName().length()) << left;
-				cout << "| " << p2->getName() << setw(29 - p2->getName().length()) <<"|" << left << endl;
+				cout << "| " << left << setw(29) << p1->getName() << " (*)" << "| ";
+				cout << left << setw(29) << p2->getName() << "|" << endl;
 				cout << "| Type: "<< p1->getType() << setw(23 - p1->getType().length()) << "| Type: " << p2->getType() << setw(23 - p2->getType().length()) << "|"  << endl;
 				cout << "| HP: " << p1->getHP() << setw(25 - to_string(p1->getHP()).length()) << "| HP: " << p2->getHP() << setw(25 - to_string(p2->getHP()).length()) << "|" << endl;
 				cout << "+------------------------------+------------------------------+" << endl;
@@ -391,7 +391,7 @@ int main()
 				cin >> skillnum;
 				p1->Skill(*p2, skillnum);
 			}
-			else if (i%2 == 1) {
+			else if (i== 1) {
 				cout << "+-------------------------------------------------------------+" << endl;
 				cout << "| 2024-02 Object-Oriented Programming Pokemon Master          |" << endl;
 				cout << "+------------------------------+------------------------------+" << endl;
