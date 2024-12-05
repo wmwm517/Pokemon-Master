@@ -298,7 +298,7 @@ void Pokemon::latestSkill(string latestSkillName, string latestEffect)
 string printWhitespace(int n)
 {
 	string str = "";
-	for (int i; i < n; i++)
+	for (int i = 0; i < n; i++)
 	{
 		str += " ";
 	}
@@ -373,7 +373,7 @@ int main()
 				cout << "+-------------------------------------------------------------+" << endl;
 				cout << "| 2024-02 Object-Oriented Programming Pokemon Master          |" << endl;
 				cout << "+------------------------------+------------------------------+" << endl;
-				cout << "| " << p1->getName() << " (*)" << printWhitespace(25 - p1->getName().length()) << "|";
+				cout << "| " << left << setw(25) << p1->getName() + " (*)" << "|";
 				cout << " " << left << setw(29) << p2->getName() << "|" << endl;
 				cout << "| Type: " << left << setw(23) << p1->getType() << "|";
 				cout << " Type: " << left << setw(23) << p2->getType() << "|"  << endl;
