@@ -2,6 +2,7 @@
 #include <vector>
 #include <string>
 #include <array>
+#include <iomanip>
 
 using namespace std;
 
@@ -78,7 +79,7 @@ void Pokemon::Skill(Pokemon& other, int n)
 	}
 	else
 	{
-		cout << this->name << " failed to perform " << skillName[n] << "." << endl;
+		cout << this->name << " failed to perform " << skillName[n] << "." << endl << endl;
 	}
 }
 
@@ -361,29 +362,29 @@ int main()
 				cout << "+-------------------------------------------------------------+" << endl;
 				cout << "| 2024-02 Object-Oriented Programming Pokemon Master          |" << endl;
 				cout << "+------------------------------+------------------------------+" << endl;
-				cout << "| " << p1->getName() <<" (*)                  | "<< p2->getName() <<"                      |" << endl;
-				cout << "| Type: "<< p1->getType() <<"               | Type: "<< p2->getType() <<"                  |" << endl;
-				cout << "| HP: " << p1->getHP() << "                       | HP: " << p2->getHP() << "                       |" << endl;
+				cout << "| " << p1->getName() <<" (*)" << setw(25 - p1->getName().length()) << "| " << p2->getName() << setw(29 - p2->getName().length()) <<"|" << endl;
+				cout << "| Type: "<< p1->getType() << setw(23 - p1->getType().length()) << "| Type: " << p2->getType() << setw(23 - p2->getType().length()) << "|"  << endl;
+				cout << "| HP: " << p1->getHP() << setw(25 - to_string(p1->getHP()).length()) << "| HP: " << p2->getHP() << setw(25 - to_string(p2->getHP()).length()) << "|" << endl;
 				cout << "+------------------------------+------------------------------+" << endl;
-				cout << "| Latest Skill: " << p1->getLastskill() << "              | Latest Skill: " << p2->getLastskill() << "              |" << endl;
-				cout << "| " << p1->getLasteffect() << "                             | " << p2->getLasteffect() << "                             |" << endl;
+				cout << "| Latest Skill: " << p1->getLastskill() << setw(15 - p1->getLastskill().length()) << "| Latest Skill: " << p2->getLastskill() << setw(15 - p2->getLastskill().length()) << "|" << endl;
+				cout << "| " << p1->getLasteffect() << setw(29 - p1->getLasteffect().length()) << "| " << p2->getLasteffect() << setw(29 - p2->getLasteffect().length()) << "|" << endl;
 				cout << "+------------------------------+------------------------------+" << endl;
-				cout << "| (0) " << p1->getSkillName(0) << "                   | (0) " << p2->getSkillName(0) << "                     |" << endl;
-				cout << "|     - Type: " << p1->getSkillType(0) << "           |     - Type: " << p2->getSkillType(0) << "           |" << endl;
-				cout << "|     - Damage: " << p1->getSkillDamage(0) << "              |     - Damage: " << p2->getSkillDamage(0) << "              |" << endl;
-				cout << "|     - Count: " << p1->getSkillCnt(0) << "(" << p1->getSkillMaxCnt(0) << ")           |     - Count: " << p2->getSkillCnt(0) << "(" << p2->getSkillMaxCnt(0) << ")" << "          |" << endl;
-				cout << "| (1) " << p1->getSkillName(1) << "               | (1) " << p2->getSkillName(1) << "                |" << endl;
-				cout << "|     - Type: " << p1->getSkillType(1) << "            |     - Type: " << p2->getSkillType(1) << "            |" << endl;
-				cout << "|     - Damage: " << p1->getSkillDamage(1) << "              |     - Damage: " << p2->getSkillDamage(1) << "              |" << endl;
-				cout << "|     - Count: " << p1->getSkillCnt(1) << "(" << p1->getSkillMaxCnt(1) << ")           |     - Count: " << p2->getSkillCnt(1) << "(" << p2->getSkillMaxCnt(1) << ")" << "          |" << endl;
-				cout << "| (2) " << p1->getSkillName(2) << "               | (2) " << p2->getSkillName(2) << "                |" << endl;
-				cout << "|     - Type: " << p1->getSkillType(2) << "            |     - Type: " << p2->getSkillType(2) << "            |" << endl;
-				cout << "|     - Damage: " << p1->getSkillDamage(2) << "              |     - Damage: " << p2->getSkillDamage(2) << "              |" << endl;
-				cout << "|     - Count: " << p1->getSkillCnt(2) << "(" << p1->getSkillMaxCnt(2) << ")           |     - Count: " << p2->getSkillCnt(2) << "(" << p2->getSkillMaxCnt(2) << ")" << "          |" << endl;
-				cout << "| (3) " << p1->getSkillName(3) << "               | (3) " << p2->getSkillName(3) << "                |" << endl;
-				cout << "|     - Type: " << p1->getSkillType(3) << "            |     - Type: " << p2->getSkillType(3) << "            |" << endl;
-				cout << "|     - Damage: " << p1->getSkillDamage(3) << "              |     - Damage: " << p2->getSkillDamage(3) << "              |" << endl;
-				cout << "|     - Count: " << p1->getSkillCnt(3) << "(" << p1->getSkillMaxCnt(3) << ")           |     - Count: " << p2->getSkillCnt(3) << "(" << p2->getSkillMaxCnt(3) << ")" << "          |" << endl;
+				cout << "| (0) " << p1->getSkillName(0) << setw(25 - p1->getSkillName(0).length()) << "| (0) " << p2->getSkillName(0) << setw(25 - p2->getSkillName(0).length()) << "|" << endl;
+				cout << "|     - Type: " << p1->getSkillType(0) << setw(17 - p1->getSkillType(0).length()) << "|     - Type: " << p2->getSkillType(0) << setw(17 - p2->getSkillType(0).length()) << "|" << endl;
+				cout << "|     - Damage: " << p1->getSkillDamage(0) << setw(15 - to_string(p1->getSkillDamage(0)).length()) <<"|     - Damage: " << p2->getSkillDamage(0) << setw(15 - to_string(p2->getSkillDamage(0)).length()) << "|" << endl;
+				cout << "|     - Count: " << p1->getSkillCnt(0) << "(" << p1->getSkillMaxCnt(0) << ")" << setw(14 - to_string(p1->getSkillCnt(0)).length() - to_string(p1->getSkillMaxCnt(0)).length()) << "|     - Count: " << p2->getSkillCnt(0) << "(" << p2->getSkillMaxCnt(0) << ")" << setw(14 - to_string(p2->getSkillCnt(0)).length() - to_string(p2->getSkillMaxCnt(0)).length()) << "|" << endl;
+				cout << "| (1) " << p1->getSkillName(1) << setw(25 - p1->getSkillName(1).length()) << "| (1) " << p2->getSkillName(1) << setw(25 - p2->getSkillName(1).length()) << "|" << endl;
+				cout << "|     - Type: " << p1->getSkillType(1) << setw(17 - p1->getSkillType(1).length()) << "|     - Type: " << p2->getSkillType(1) << setw(17 - p2->getSkillType(1).length()) << "|" << endl;
+				cout << "|     - Damage: " << p1->getSkillDamage(1) << setw(15 - to_string(p1->getSkillDamage(1)).length()) <<"|     - Damage: " << p2->getSkillDamage(1) << setw(15 - to_string(p2->getSkillDamage(1)).length()) << "|" << endl;
+				cout << "|     - Count: " << p1->getSkillCnt(1) << "(" << p1->getSkillMaxCnt(1) << ")" << setw(14 - to_string(p1->getSkillCnt(1)).length() - to_string(p1->getSkillMaxCnt(1)).length()) << "|     - Count: " << p2->getSkillCnt(1) << "(" << p2->getSkillMaxCnt(1) << ")" << setw(14 - to_string(p2->getSkillCnt(1)).length() - to_string(p2->getSkillMaxCnt(1)).length()) << "|" << endl;
+				cout << "| (2) " << p1->getSkillName(2) << setw(25 - p1->getSkillName(2).length()) << "| (2) " << p2->getSkillName(2) << setw(25 - p2->getSkillName(2).length()) << "|" << endl;
+				cout << "|     - Type: " << p1->getSkillType(2) << setw(17 - p1->getSkillType(2).length()) << "|     - Type: " << p2->getSkillType(2) << setw(17 - p2->getSkillType(2).length()) << "|" << endl;
+				cout << "|     - Damage: " << p1->getSkillDamage(2) << setw(15 - to_string(p1->getSkillDamage(2)).length()) <<"|     - Damage: " << p2->getSkillDamage(2) << setw(15 - to_string(p2->getSkillDamage(2)).length()) << "|" << endl;
+				cout << "|     - Count: " << p1->getSkillCnt(2) << "(" << p1->getSkillMaxCnt(2) << ")" << setw(14 - to_string(p1->getSkillCnt(2)).length() - to_string(p1->getSkillMaxCnt(2)).length()) << "|     - Count: " << p2->getSkillCnt(2) << "(" << p2->getSkillMaxCnt(2) << ")" << setw(14 - to_string(p2->getSkillCnt(2)).length() - to_string(p2->getSkillMaxCnt(2)).length()) << "|" << endl;
+				cout << "| (3) " << p1->getSkillName(3) << setw(25 - p1->getSkillName(3).length()) << "| (3) " << p2->getSkillName(3) << setw(25 - p2->getSkillName(3).length()) << "|" << endl;
+				cout << "|     - Type: " << p1->getSkillType(3) << setw(17 - p1->getSkillType(3).length()) << "|     - Type: " << p2->getSkillType(3) << setw(17 - p2->getSkillType(3).length()) << "|" << endl;
+				cout << "|     - Damage: " << p1->getSkillDamage(3) << setw(15 - to_string(p1->getSkillDamage(3)).length()) <<"|     - Damage: " << p2->getSkillDamage(3) << setw(15 - to_string(p2->getSkillDamage(3)).length()) << "|" << endl;
+				cout << "|     - Count: " << p1->getSkillCnt(3) << "(" << p1->getSkillMaxCnt(3) << ")" << setw(14 - to_string(p1->getSkillCnt(3)).length() - to_string(p1->getSkillMaxCnt(3)).length()) << "|     - Count: " << p2->getSkillCnt(3) << "(" << p2->getSkillMaxCnt(3) << ")" << setw(14 - to_string(p2->getSkillCnt(3)).length() - to_string(p2->getSkillMaxCnt(3)).length()) << "|" << endl;
 				cout << "+------------------------------+------------------------------+" << endl;
 				cout << "Choose a skill (0~3): ";
 				cin >> skillnum;
@@ -393,29 +394,29 @@ int main()
 				cout << "+-------------------------------------------------------------+" << endl;
 				cout << "| 2024-02 Object-Oriented Programming Pokemon Master          |" << endl;
 				cout << "+------------------------------+------------------------------+" << endl;
-				cout << "| " << p1->getName() <<"                      | "<< p2->getName() << " (*)                  |" << endl;
-				cout << "| Type: "<< p1->getType() <<"               | Type: "<< p2->getType() <<"                  |" << endl;
-				cout << "| HP: " << p1->getHP() << "                       | HP: " << p2->getHP() << "                       |" << endl;
+				cout << "| " << p1->getName() << setw(29 - p1->getName().length()) << "| " << p2->getName() << " (*)" << setw(25 - p2->getName().length()) <<"|" << endl;
+				cout << "| Type: "<< p1->getType() << setw(23 - p1->getType().length()) << "| Type: " << p2->getType() << setw(23 - p2->getType().length()) << "|"  << endl;
+				cout << "| HP: " << p1->getHP() << setw(25 - to_string(p1->getHP()).length()) << "| HP: " << p2->getHP() << setw(25 - to_string(p2->getHP()).length()) << "|" << endl;
 				cout << "+------------------------------+------------------------------+" << endl;
-				cout << "| Latest Skill: " << p1->getLastskill() << "              | Latest Skill: " << p2->getLastskill() << "              |" << endl;
-				cout << "| " << p1->getLasteffect() << "                             | " << p2->getLasteffect() << "                             |" << endl;
+				cout << "| Latest Skill: " << p1->getLastskill() << setw(15 - p1->getLastskill().length()) << "| Latest Skill: " << p2->getLastskill() << setw(15 - p2->getLastskill().length()) << "|" << endl;
+				cout << "| " << p1->getLasteffect() << setw(29 - p1->getLasteffect().length()) << "| " << p2->getLasteffect() << setw(29 - p2->getLasteffect().length()) << "|" << endl;
 				cout << "+------------------------------+------------------------------+" << endl;
-				cout << "| (0) " << p1->getSkillName(0) << "                   | (0) " << p2->getSkillName(0) << "                     |" << endl;
-				cout << "|     - Type: " << p1->getSkillType(0) << "           |     - Type: " << p2->getSkillType(0) << "           |" << endl;
-				cout << "|     - Damage: " << p1->getSkillDamage(0) << "              |     - Damage: " << p2->getSkillDamage(0) << "              |" << endl;
-				cout << "|     - Count: " << p1->getSkillCnt(0) << "(" << p1->getSkillMaxCnt(0) << ")           |     - Count: " << p2->getSkillCnt(0) << "(" << p2->getSkillMaxCnt(0) << ")" << "          |" << endl;
-				cout << "| (1) " << p1->getSkillName(1) << "               | (1) " << p2->getSkillName(1) << "                |" << endl;
-				cout << "|     - Type: " << p1->getSkillType(1) << "            |     - Type: " << p2->getSkillType(1) << "            |" << endl;
-				cout << "|     - Damage: " << p1->getSkillDamage(1) << "              |     - Damage: " << p2->getSkillDamage(1) << "              |" << endl;
-				cout << "|     - Count: " << p1->getSkillCnt(1) << "(" << p1->getSkillMaxCnt(1) << ")           |     - Count: " << p2->getSkillCnt(1) << "(" << p2->getSkillMaxCnt(1) << ")" << "          |" << endl;
-				cout << "| (2) " << p1->getSkillName(2) << "               | (2) " << p2->getSkillName(2) << "                |" << endl;
-				cout << "|     - Type: " << p1->getSkillType(2) << "            |     - Type: " << p2->getSkillType(2) << "            |" << endl;
-				cout << "|     - Damage: " << p1->getSkillDamage(2) << "              |     - Damage: " << p2->getSkillDamage(2) << "              |" << endl;
-				cout << "|     - Count: " << p1->getSkillCnt(2) << "(" << p1->getSkillMaxCnt(2) << ")           |     - Count: " << p2->getSkillCnt(2) << "(" << p2->getSkillMaxCnt(2) << ")" << "          |" << endl;
-				cout << "| (3) " << p1->getSkillName(3) << "               | (3) " << p2->getSkillName(3) << "                |" << endl;
-				cout << "|     - Type: " << p1->getSkillType(3) << "            |     - Type: " << p2->getSkillType(3) << "            |" << endl;
-				cout << "|     - Damage: " << p1->getSkillDamage(3) << "              |     - Damage: " << p2->getSkillDamage(3) << "              |" << endl;
-				cout << "|     - Count: " << p1->getSkillCnt(3) << "(" << p1->getSkillMaxCnt(3) << ")           |     - Count: " << p2->getSkillCnt(3) << "(" << p2->getSkillMaxCnt(3) << ")" << "          |" << endl;
+				cout << "| (0) " << p1->getSkillName(0) << setw(25 - p1->getSkillName(0).length()) << "| (0) " << p2->getSkillName(0) << setw(25 - p2->getSkillName(0).length()) << "|" << endl;
+				cout << "|     - Type: " << p1->getSkillType(0) << setw(17 - p1->getSkillType(0).length()) << "|     - Type: " << p2->getSkillType(0) << setw(17 - p2->getSkillType(0).length()) << "|" << endl;
+				cout << "|     - Damage: " << p1->getSkillDamage(0) << setw(15 - to_string(p1->getSkillDamage(0)).length()) <<"|     - Damage: " << p2->getSkillDamage(0) << setw(15 - to_string(p2->getSkillDamage(0)).length()) << "|" << endl;
+				cout << "|     - Count: " << p1->getSkillCnt(0) << "(" << p1->getSkillMaxCnt(0) << ")" << setw(14 - to_string(p1->getSkillCnt(0)).length() - to_string(p1->getSkillMaxCnt(0)).length()) << "|     - Count: " << p2->getSkillCnt(0) << "(" << p2->getSkillMaxCnt(0) << ")" << setw(14 - to_string(p2->getSkillCnt(0)).length() - to_string(p2->getSkillMaxCnt(0)).length()) << "|" << endl;
+				cout << "| (1) " << p1->getSkillName(1) << setw(25 - p1->getSkillName(1).length()) << "| (1) " << p2->getSkillName(1) << setw(25 - p2->getSkillName(1).length()) << "|" << endl;
+				cout << "|     - Type: " << p1->getSkillType(1) << setw(17 - p1->getSkillType(1).length()) << "|     - Type: " << p2->getSkillType(1) << setw(17 - p2->getSkillType(1).length()) << "|" << endl;
+				cout << "|     - Damage: " << p1->getSkillDamage(1) << setw(15 - to_string(p1->getSkillDamage(1)).length()) <<"|     - Damage: " << p2->getSkillDamage(1) << setw(15 - to_string(p2->getSkillDamage(1)).length()) << "|" << endl;
+				cout << "|     - Count: " << p1->getSkillCnt(1) << "(" << p1->getSkillMaxCnt(1) << ")" << setw(14 - to_string(p1->getSkillCnt(1)).length() - to_string(p1->getSkillMaxCnt(1)).length()) << "|     - Count: " << p2->getSkillCnt(1) << "(" << p2->getSkillMaxCnt(1) << ")" << setw(14 - to_string(p2->getSkillCnt(1)).length() - to_string(p2->getSkillMaxCnt(1)).length()) << "|" << endl;
+				cout << "| (2) " << p1->getSkillName(2) << setw(25 - p1->getSkillName(2).length()) << "| (2) " << p2->getSkillName(2) << setw(25 - p2->getSkillName(2).length()) << "|" << endl;
+				cout << "|     - Type: " << p1->getSkillType(2) << setw(17 - p1->getSkillType(2).length()) << "|     - Type: " << p2->getSkillType(2) << setw(17 - p2->getSkillType(2).length()) << "|" << endl;
+				cout << "|     - Damage: " << p1->getSkillDamage(2) << setw(15 - to_string(p1->getSkillDamage(2)).length()) <<"|     - Damage: " << p2->getSkillDamage(2) << setw(15 - to_string(p2->getSkillDamage(2)).length()) << "|" << endl;
+				cout << "|     - Count: " << p1->getSkillCnt(2) << "(" << p1->getSkillMaxCnt(2) << ")" << setw(14 - to_string(p1->getSkillCnt(2)).length() - to_string(p1->getSkillMaxCnt(2)).length()) << "|     - Count: " << p2->getSkillCnt(2) << "(" << p2->getSkillMaxCnt(2) << ")" << setw(14 - to_string(p2->getSkillCnt(2)).length() - to_string(p2->getSkillMaxCnt(2)).length()) << "|" << endl;
+				cout << "| (3) " << p1->getSkillName(3) << setw(25 - p1->getSkillName(3).length()) << "| (3) " << p2->getSkillName(3) << setw(25 - p2->getSkillName(3).length()) << "|" << endl;
+				cout << "|     - Type: " << p1->getSkillType(3) << setw(17 - p1->getSkillType(3).length()) << "|     - Type: " << p2->getSkillType(3) << setw(17 - p2->getSkillType(3).length()) << "|" << endl;
+				cout << "|     - Damage: " << p1->getSkillDamage(3) << setw(15 - to_string(p1->getSkillDamage(3)).length()) <<"|     - Damage: " << p2->getSkillDamage(3) << setw(15 - to_string(p2->getSkillDamage(3)).length()) << "|" << endl;
+				cout << "|     - Count: " << p1->getSkillCnt(3) << "(" << p1->getSkillMaxCnt(3) << ")" << setw(14 - to_string(p1->getSkillCnt(3)).length() - to_string(p1->getSkillMaxCnt(3)).length()) << "|     - Count: " << p2->getSkillCnt(3) << "(" << p2->getSkillMaxCnt(3) << ")" << setw(14 - to_string(p2->getSkillCnt(3)).length() - to_string(p2->getSkillMaxCnt(3)).length()) << "|" << endl;
 				cout << "+------------------------------+------------------------------+" << endl;
 				cout << "Choose a skill (0~3): ";
 				cin >> skillnum;

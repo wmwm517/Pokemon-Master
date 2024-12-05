@@ -2,6 +2,8 @@
     "files.associations": {
         "iostream": "cpp",
         "memory": "cpp",
-        "xstring": "cpp"
+        "xstring": "cpp",
+        "iomanip": "cpp",
+        "string": "cpp"
     }
 }
