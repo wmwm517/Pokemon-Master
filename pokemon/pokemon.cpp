@@ -5,6 +5,7 @@
 #include <iomanip>
 
 using namespace std;
+string printWhitespace(int n);
 
 class Pokemon
 {
@@ -294,6 +295,16 @@ void Pokemon::latestSkill(string latestSkillName, string latestEffect)
 	this->lasteffect = latestEffect;
 }
 
+string printWhitespace(int n)
+{
+	string str = "";
+	for (int i; i < n; i++)
+	{
+		str += " ";
+	}
+	return str;
+}
+
 int main()
 {
 	bool isRunning = true;
@@ -362,7 +373,7 @@ int main()
 				cout << "+-------------------------------------------------------------+" << endl;
 				cout << "| 2024-02 Object-Oriented Programming Pokemon Master          |" << endl;
 				cout << "+------------------------------+------------------------------+" << endl;
-				cout << "| " << p1->getName() << " (*)" << string(" ", 25 - p1->getName().length()) << "|";
+				cout << "| " << p1->getName() << " (*)" << printWhitespace(25 - p1->getName().length()) << "|";
 				cout << " " << left << setw(29) << p2->getName() << "|" << endl;
 				cout << "| Type: " << left << setw(23) << p1->getType() << "|";
 				cout << " Type: " << left << setw(23) << p2->getType() << "|"  << endl;
@@ -380,32 +391,32 @@ int main()
 				cout << "     - Type: " << left << setw(17) << p2->getSkillType(0) << "|" << endl;
 				cout << "|     - Damage: " << left << setw(15) << p1->getSkillDamage(0) <<"|";
 				cout << "     - Damage: " << left << setw(15) << p2->getSkillDamage(0) << "|" << endl;
-				cout << "|     - Count: " << p1->getSkillCnt(0) << "(" << p1->getSkillMaxCnt(0) << ")" << string(" ", 14 - to_string(p1->getSkillCnt(0)).length() - to_string(p1->getSkillMaxCnt(0)).length()) << "|";
-				cout << "     - Count: "  << p2->getSkillCnt(0) << "(" << p2->getSkillMaxCnt(0) << ")" << string(" ", 14 - to_string(p2->getSkillCnt(0)).length() - to_string(p2->getSkillMaxCnt(0)).length()) <<"|" << endl;
+				cout << "|     - Count: " << p1->getSkillCnt(0) << "(" << p1->getSkillMaxCnt(0) << ")" << printWhitespace(14 - to_string(p1->getSkillCnt(0)).length() - to_string(p1->getSkillMaxCnt(0)).length()) << "|";
+				cout << "     - Count: "  << p2->getSkillCnt(0) << "(" << p2->getSkillMaxCnt(0) << ")" << printWhitespace(14 - to_string(p2->getSkillCnt(0)).length() - to_string(p2->getSkillMaxCnt(0)).length()) <<"|" << endl;
 				cout << "| (1) " << left << setw(25) << p1->getSkillName(1) << "|";
 				cout << " (1) " << left << setw(25) << p2->getSkillName(1)  << "|" << endl;
 				cout << "|     - Type: " << left << setw(17) << p1->getSkillType(1) << "|";
 				cout << "     - Type: " << left << setw(17) << p2->getSkillType(1) << "|" << endl;
 				cout << "|     - Damage: " << left << setw(15) << p1->getSkillDamage(1) <<"|";
 				cout << "     - Damage: " << left << setw(15) << p2->getSkillDamage(1) << "|" << endl;
-				cout << "|     - Count: " << p1->getSkillCnt(1) << "(" << p1->getSkillMaxCnt(1) << ")" << string(" ", 14 - to_string(p1->getSkillCnt(1)).length() - to_string(p1->getSkillMaxCnt(1)).length()) << "|";
-				cout << "     - Count: "  << p2->getSkillCnt(1) << "(" << p2->getSkillMaxCnt(1) << ")" << string(" ", 14 - to_string(p2->getSkillCnt(1)).length() - to_string(p2->getSkillMaxCnt(1)).length()) <<"|" << endl;
+				cout << "|     - Count: " << p1->getSkillCnt(1) << "(" << p1->getSkillMaxCnt(1) << ")" << printWhitespace(14 - to_string(p1->getSkillCnt(1)).length() - to_string(p1->getSkillMaxCnt(1)).length()) << "|";
+				cout << "     - Count: "  << p2->getSkillCnt(1) << "(" << p2->getSkillMaxCnt(1) << ")" << printWhitespace(14 - to_string(p2->getSkillCnt(1)).length() - to_string(p2->getSkillMaxCnt(1)).length()) <<"|" << endl;
 				cout << "| (2) " << left << setw(25) << p1->getSkillName(2) << "|";
 				cout << " (2) " << left << setw(25) << p2->getSkillName(2)  << "|" << endl;
 				cout << "|     - Type: " << left << setw(17) << p1->getSkillType(2) << "|";
 				cout << "     - Type: " << left << setw(17) << p2->getSkillType(2) << "|" << endl;
 				cout << "|     - Damage: " << left << setw(15) << p1->getSkillDamage(2) <<"|";
 				cout << "     - Damage: " << left << setw(15) << p2->getSkillDamage(2) << "|" << endl;
-				cout << "|     - Count: " << p1->getSkillCnt(2) << "(" << p1->getSkillMaxCnt(2) << ")" << string(" ", 14 - to_string(p1->getSkillCnt(2)).length() - to_string(p1->getSkillMaxCnt(2)).length()) << "|";
-				cout << "     - Count: "  << p2->getSkillCnt(2) << "(" << p2->getSkillMaxCnt(2) << ")" << string(" ", 14 - to_string(p2->getSkillCnt(2)).length() - to_string(p2->getSkillMaxCnt(2)).length()) <<"|" << endl;
+				cout << "|     - Count: " << p1->getSkillCnt(2) << "(" << p1->getSkillMaxCnt(2) << ")" << printWhitespace(14 - to_string(p1->getSkillCnt(2)).length() - to_string(p1->getSkillMaxCnt(2)).length()) << "|";
+				cout << "     - Count: "  << p2->getSkillCnt(2) << "(" << p2->getSkillMaxCnt(2) << ")" << printWhitespace(14 - to_string(p2->getSkillCnt(2)).length() - to_string(p2->getSkillMaxCnt(2)).length()) <<"|" << endl;
 				cout << "| (3) " << left << setw(25) << p1->getSkillName(3) << "|";
 				cout << " (3) " << left << setw(25) << p2->getSkillName(3)  << "|" << endl;
 				cout << "|     - Type: " << left << setw(17) << p1->getSkillType(3) << "|";
 				cout << "     - Type: " << left << setw(17) << p2->getSkillType(3) << "|" << endl;
 				cout << "|     - Damage: " << left << setw(15) << p1->getSkillDamage(3) <<"|";
 				cout << "     - Damage: " << left << setw(15) << p2->getSkillDamage(3) << "|" << endl;
-				cout << "|     - Count: " << p1->getSkillCnt(3) << "(" << p1->getSkillMaxCnt(3) << ")" << string(" ", 14 - to_string(p1->getSkillCnt(3)).length() - to_string(p1->getSkillMaxCnt(3)).length()) << "|";
-				cout << "     - Count: "  << p2->getSkillCnt(3) << "(" << p2->getSkillMaxCnt(3) << ")" << string(" ", 14 - to_string(p2->getSkillCnt(3)).length() - to_string(p2->getSkillMaxCnt(3)).length()) <<"|" << endl;
+				cout << "|     - Count: " << p1->getSkillCnt(3) << "(" << p1->getSkillMaxCnt(3) << ")" << printWhitespace(14 - to_string(p1->getSkillCnt(3)).length() - to_string(p1->getSkillMaxCnt(3)).length()) << "|";
+				cout << "     - Count: "  << p2->getSkillCnt(3) << "(" << p2->getSkillMaxCnt(3) << ")" << printWhitespace(14 - to_string(p2->getSkillCnt(3)).length() - to_string(p2->getSkillMaxCnt(3)).length()) <<"|" << endl;
 				cout << "+------------------------------+------------------------------+" << endl;
 				cout << "Choose a skill (0~3): ";
 				cin >> skillnum;
