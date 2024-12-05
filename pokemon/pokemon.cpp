@@ -212,11 +212,11 @@ int Pokemon::effect(string skillType, string pokemonType)
 	}
 	else if (skillType == "Ground")
 	{
-		if (pokemonType == "Normal" || pokemonType == "Ground" || pokemonType == "Fire")
+		if (pokemonType == "Normal" || pokemonType == "Ground" || pokemonType == "Water")
 		{
 			return 1;
 		}
-		else if (pokemonType == "Electric" || pokemonType == "Grass")
+		else if (pokemonType == "Electric" || pokemonType == "Fire")
 		{
 			return 0;
 		}
@@ -227,12 +227,11 @@ int Pokemon::effect(string skillType, string pokemonType)
 	}
 	else if (skillType == "Electric")
 	{
-		if (pokemonType == "Normal" || pokemonType == "Water" ||
-			pokemonType == "Grass" || pokemonType == "Fire")
+		if (pokemonType == "Normal" || pokemonType == "Fire")
 		{
 			return 1;
 		}
-		else if (pokemonType == "Electric")
+		else if (pokemonType == "Ground" || pokemonType == "Electric" || pokemonType == "Grass")
 		{
 			return 0;
 		}
@@ -243,11 +242,11 @@ int Pokemon::effect(string skillType, string pokemonType)
 	}
 	else if (skillType == "Water")
 	{
-		if (pokemonType == "Normal" || pokemonType == "Ground")
+		if (pokemonType == "Normal" || pokemonType == "Electric")
 		{
 			return 1;
 		}
-		else if (pokemonType == "Water" || pokemonType == "Fire")
+		else if (pokemonType == "Water" || pokemonType == "Grass")
 		{
 			return 0;
 		}
@@ -258,11 +257,11 @@ int Pokemon::effect(string skillType, string pokemonType)
 	}
 	else if (skillType == "Grass")
 	{
-		if (pokemonType == "Normal")
+		if (pokemonType == "Normal" || pokemonType == "Electric")
 		{
 			return 1;
 		}
-		else if (pokemonType == "Fire")
+		else if (pokemonType == "Water")
 		{
 			return 2;
 		}
@@ -273,11 +272,11 @@ int Pokemon::effect(string skillType, string pokemonType)
 	}
 	else if (skillType == "Fire")
 	{
-		if (pokemonType == "Normal" || pokemonType == "Electric")
+		if (pokemonType == "Normal" || pokemonType == "Ground" || pokemonType == "Electric")
 		{
 			return 1;
 		}
-		else if (pokemonType == "Grass" || pokemonType == "Fire")
+		else if (pokemonType == "Water" || pokemonType == "Fire")
 		{
 			return 0;
 		}
