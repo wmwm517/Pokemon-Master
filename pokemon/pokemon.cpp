@@ -150,7 +150,7 @@ public:
 };
 
 Specification3::Specification3() {
-	name = "Charamander";
+	name = "Charmander";
 	type = "Fire";
 	HP = 39;
 	skillName[0] = "Tackle", skillName[1] = "Flamethrower", skillName[2] = "Dig", skillName[3] = "Heat Wave";
