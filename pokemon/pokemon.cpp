@@ -5,16 +5,27 @@
 #include <iomanip>
 
 using namespace std;
-string printWhitespace(int n);
+
+string printWhitespace(int n); // Function to print whitespace n times
 
 class Pokemon
+// A class that stores various stats of a Pokemon and has functions accordingly.
 {
 public:
 	void Skill(Pokemon& other, int n);
-	bool isLive();
+	// Function called when a Pokemon uses a skill
+	// other = defense Pokemon
+	bool isLive(); 
+	// Function to determine whether a Pokemon's HP has become 0
 	bool canTry(int Skillnum);
+	// Function to determine whether a Pokemon can use nth skill
 	int effect(string skillType, string pokemonType);
+	// Function that returns what the effect of the attacking Pokemon's skill was.
 	void latestSkill(string latestSkill, string lasteffect);
+	// Function that stores the skills used in the previous turn and their effects
+	
+	// getter Function
+	// It's called when the battle screen is drawn
 	string getName() { return name; }
 	string getType() { return type; }
 	int getHP() { return HP; }
@@ -30,25 +41,35 @@ protected:
 	string name;
 	string type;
 	int HP;
+	// Expressed as an array to implement 4 skills
 	string skillName[4];
 	string skillType[4];
 	int skillDamage[4];
 	int skillCnt[4];
 	int skillMaxCnt[4]; 
+	// Sets the initial values ​​of skills and effects used in the previous turn.
 	string lastskill = "-";
 	string lasteffect = "";
 };
 
 void Pokemon::Skill(Pokemon& other, int n)
 {
+	// Call the nth value in the skill list
 	this->skillName[n];
 	this->skillType[n];
 	this->skillDamage[n];
 	this->skillCnt[n];
+	// Determine whether Pokemon can use nth skill
 	if (canTry(n))
-	{
+	{	
+		// Save the effect of a skill through the effect function
 		int effectResult = effect(skillType[n], other.type);
+		// Prints out that the skill was used
 		cout << this->name << " used " << skillName[n] << "." << endl;
+		// Reduces HP differently depending on the skill's level of effect.
+		// If the skill is not very effective, the damage of the skill decrease by 3.
+		// If the skill is effective, the damage of the skill is maintained
+		// If the skill is not very effective, the damage of the skill increase by .
 		if (effectResult == 0)
 		{
 			cout << "It was not very effective." << endl << endl;
@@ -68,15 +89,20 @@ void Pokemon::Skill(Pokemon& other, int n)
 			other.HP -= skillDamage[n] + 5;
 		}
 
+		// Reduces the number of uses of the nth skill by one
 		this->skillCnt[n] -= 1;
 
+		// After using the skill, determine whether the HP of the other Pokemon becomes 0.
 		if (!other.isLive())
 		{
+			// Prints the winning and losing Pokémon
 			cout << "===============================================================" << endl;
 			cout << "Match Result: " << this->name << " defeats " << other.name << endl;
+			// terminates the program.
 			exit(0);
 		}
 	}
+	// If the Pokemon can't use nth skill, prints it
 	else
 	{
 		cout << this->name << " failed to perform " << skillName[n] << "." << endl << endl;
@@ -85,12 +111,15 @@ void Pokemon::Skill(Pokemon& other, int n)
 
 
 class Specification0 : public Pokemon
+// A class that inherits from a class called Pokemon and stores the stats of a specific Pokemon.
+// Pokemon No.0: Pikachu
 {
 public:
 	Specification0();
 };
 
 Specification0::Specification0(){
+	// Initializing Pikachu’s stats
 	name = "Pikachu";
 	type = "Electric";
 	HP = 35;
@@ -105,12 +134,15 @@ Specification0::Specification0(){
 
 
 class Specification1 : public Pokemon
+// Same as Specification0 class
+// Pokemon No.1: Dratini
 {
 public:
 	Specification1();
 };
 
 Specification1::Specification1() {
+	// Initializing Dratini’s stats
 	name = "Dratini";
 	type = "Water";
 	HP = 41;
@@ -125,12 +157,15 @@ Specification1::Specification1() {
 
 
 class Specification2 : public Pokemon
+// Same as Specification0 class
+// Pokemon No.2: Eevee
 {
 public:
 	Specification2();
 };
 
 Specification2::Specification2() {
+	// Initializing Eevee’s stats
 	name = "Eevee";
 	type = "Normal";
 	HP = 55;
@@ -144,12 +179,15 @@ Specification2::Specification2() {
 
 
 class Specification3 : public Pokemon
+// Same as Specification0 class
+// Pokemon No.3: Charmander
 {
 public:
 	Specification3();
 };
 
 Specification3::Specification3() {
+	// Initializing Charmander’s stats
 	name = "Charmander";
 	type = "Fire";
 	HP = 39;
@@ -164,12 +202,15 @@ Specification3::Specification3() {
 
 
 class Specification4 : public Pokemon
+// Same as Specification0 class
+// Pokemon No.4: Palkia
 {
 public:
 	Specification4();
 };
 
 Specification4::Specification4() {
+	// Initializing Palkia’s stats
 	name = "Palkia";
 	type = "Water";
 	HP = 90;
@@ -184,7 +225,10 @@ Specification4::Specification4() {
 
 
 bool Pokemon::isLive()
-{
+// Function to determine whether a Pokemon's HP has become 0
+{	
+	// If Poemon's HP is lower than 0, return false
+	// Otherwise, return true
 	if (this->HP <= 0)
 	{
 		return false;
@@ -193,7 +237,10 @@ bool Pokemon::isLive()
 }
 
 bool Pokemon::canTry(int Skillnum)
+// Function to determine whether a Pokemon can use nth skill
 {	
+	// If Pokemon's nth skill count is lower than 0, return false
+	// Otherwise, return true
 	if (this->skillCnt[Skillnum] <= 0)
 	{
 		return false;
@@ -203,7 +250,10 @@ bool Pokemon::canTry(int Skillnum)
 
 int Pokemon::effect(string skillType, string pokemonType)
 {
-	// 0:"It was not very effective", 1:"It was effective", 2:"It was super effective"
+	// Function that returns what the effect of the attacking Pokemon's skill was.
+	// If the skill was not very effective, return 0.
+	// If the skill was effective, return 1.
+	// If the skill was super effective, return 2.
 
 	if (skillType == "Normal")
 	{
@@ -294,6 +344,8 @@ void Pokemon::latestSkill(string latestSkillName, string latestEffect)
 }
 
 string printWhitespace(int n)
+// Function to return n whitespace
+// Used to maintain line spacing on the battle screen
 {
 	string str = "";
 	for (int i = 0; i < n; i++)
@@ -305,21 +357,28 @@ string printWhitespace(int n)
 
 int main()
 {
+	// The battle turn must be repeated until the HP of either Pokémon reaches 0.
 	bool isRunning = true;
+	
+	// Receive the value of two Pokemon from the user
 	int num1, num2;
 	cout << "Choose a Pokemon(0~4): ";
 	cin >> num1;
 	cout << "Choose a Pokemon(0~4): ";
 	cin >> num2;
 
+	// If the two Pokémon are the same, print a text and end the program.
 	if (num2 == num1)
 	{
 		cout << "You have to choose Pokemons different from each other.";
 		return 0;
 	}	
+
+	// If the two Pokémon are the same, print a text and end the program.
 	Pokemon *p1;
 	Pokemon *p2;
 
+	// Specifies the class inherited from pokemon according to the value received from the user.
 	if (num1 == 0)
 	{
 		p1 = new Specification0();
@@ -365,9 +424,12 @@ int main()
 	while (isRunning)
 	{
 		for (int i=0; i<2; i++)
+		// Draw a battle screen
+		// Implement p1’s turn and p2’s turn separately.
 		{
-			int skillnum;
+			int skillnum; // skillnumth skill will be used
 			if (i == 0) {
+				// p1's turn
 				cout << "+-------------------------------------------------------------+" << endl;
 				cout << "| 2024-02 Object-Oriented Programming Pokemon Master          |" << endl;
 				cout << "+------------------------------+------------------------------+" << endl;
@@ -416,11 +478,16 @@ int main()
 				cout << "|     - Count: " << p1->getSkillCnt(3) << "(" << p1->getSkillMaxCnt(3) << ")" << printWhitespace(14 - (to_string(p1->getSkillCnt(3)).length() + to_string(p1->getSkillMaxCnt(3)).length())) << "|";
 				cout << "     - Count: "  << p2->getSkillCnt(3) << "(" << p2->getSkillMaxCnt(3) << ")" << printWhitespace(14 - (to_string(p2->getSkillCnt(3)).length() + to_string(p2->getSkillMaxCnt(3)).length())) <<"|" << endl;
 				cout << "+------------------------------+------------------------------+" << endl;
+				
+				// Receives the index value of the skill to be used by p1 from the user.
 				cout << "Choose a skill (0~3): ";
 				cin >> skillnum;
+
+				// p1(attacker) uses skillnumth skill to p2(defender)
 				p1->Skill(*p2, skillnum);
 			}
 			else if (i== 1) {
+				// p2's turn
 				cout << "+-------------------------------------------------------------+" << endl;
 				cout << "| 2024-02 Object-Oriented Programming Pokemon Master          |" << endl;
 				cout << "+------------------------------+------------------------------+" << endl;
@@ -469,8 +536,12 @@ int main()
 				cout << "|     - Count: " << p1->getSkillCnt(3) << "(" << p1->getSkillMaxCnt(3) << ")" << printWhitespace(14 - (to_string(p1->getSkillCnt(3)).length() + to_string(p1->getSkillMaxCnt(3)).length())) << "|";
 				cout << "     - Count: "  << p2->getSkillCnt(3) << "(" << p2->getSkillMaxCnt(3) << ")" << printWhitespace(14 - (to_string(p2->getSkillCnt(3)).length() + to_string(p2->getSkillMaxCnt(3)).length())) <<"|" << endl;
 				cout << "+------------------------------+------------------------------+" << endl;
+				
+				// Receives the index value of the skill to be used by p1 from the user.
 				cout << "Choose a skill (0~3): ";
 				cin >> skillnum;
+
+				// p2(attacker) uses skillnumth skill to p1(defender)
 				p2->Skill(*p1, skillnum);
 			}
 		}
