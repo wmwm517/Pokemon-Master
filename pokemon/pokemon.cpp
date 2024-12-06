@@ -45,8 +45,7 @@ void Pokemon::Skill(Pokemon& other, int n)
 	this->skillType[n];
 	this->skillDamage[n];
 	this->skillCnt[n];
-	cout << canTry(skillCnt[n]);
-	if (canTry(skillCnt[n]))
+	if (canTry(n))
 	{
 		int effectResult = effect(skillType[n], other.type);
 		cout << this->name << " used " << skillName[n] << "." << endl;
@@ -195,8 +194,6 @@ bool Pokemon::isLive()
 
 bool Pokemon::canTry(int Skillnum)
 {	
-	cout << Skillnum;
-	cout << this->skillCnt[Skillnum];
 	if (this->skillCnt[Skillnum] <= 0)
 	{
 		return false;
